@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Validação de CPF</title>
+</head>
+<body>
+
+    <label for="txtCPF">Digite o CPF:</label>
+    <input id="txtCPF" type="text">
+    <button type="button" onclick="verificarCPF(document.getElementById('txtCPF').value)">Validar</button>
+
+    <script>
+       function verificarCPF(cpf){
+        if (cpf.length != 11){
+                alert("CPF invalido, quantidade caracteres menor 11")
+            }else{
+                if (cpf == '11111111111' || cpf == '22222222222' || cpf == '33333333333' || cpf == '44444444444' || cpf == '55555555555' || cpf == '66666666666' || cpf == '77777777777' || cpf == '88888888888' || cpf == '99999999999'){
+                    alert("CPF Invalido, numeros repetidos")
+                }else{
+                    vet=[]
+                    i=0
+                    while(i<11){
+                        vet[i] = cpf[i]
+                        i=i+1
+                    }   
+                    v=vet[0]
+                    cont=0
+                    while (i<vet.length){
+                        if(v == vet[i]){
+                            cont=cont+1
+                        }
+                    }
+                }
+                    
+                    if(cont>10){
+                        alert("CPF Invalido")
+                    }else{
+                        somatoria = 0
+                        j=0
+                        aux=10
+
+                        while (j<vet.length-2){
+                            somatoria = somatoria + vet[j]*aux
+                            j=j+1
+                            aux=aux-1
+                        }     
+
+                        resto = (somatoria*10)%11
+                        digito1 = 0
+
+                        if(resto == 10){
+                            digito1 = 0
+                        }else{
+                            digito1 = resto
+                        }
+                    }
+
+                    somatoria2=0
+                    k=0
+                    aux1=11
+                    while(k<vet.length-1){
+                        somatoria2 = somatoria2 + vet[k]*aux1
+                        k=k+1
+                        aux1=aux1-1
+                    }
+                    resto = (somatoria2*10)%11;
+                    digito2 = resto;
+                    
+                    if(digito1 == vet[9] && digito2 == vet[10]){
+                        alert("CPF Valido")
+                    }else{
+                        alert("CPF Invalido")
+                    }
+                }
+        }
+    </script>
+    
+</body>
+</html>
